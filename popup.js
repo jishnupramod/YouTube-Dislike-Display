@@ -22,7 +22,7 @@ async function setDislikeCount() {
   let URL = `https://www.googleapis.com/youtube/v3/videos?id=${videoId}&key=${KEY}&fields=items(id,snippet(channelId,title,categoryId),statistics)&part=snippet,statistics`
   let ytStrings = document.getElementsByTagName("yt-formatted-string")
   const target = "Dislike"
-  let found
+  let found = null
 
   for (let i=0; i<ytStrings.length; ++i) {
     if (ytStrings[i].textContent === target) {
@@ -30,6 +30,8 @@ async function setDislikeCount() {
       break;
     }
   }
+  
+  if (!found) return
 
   // console.log(found.innerText);
 
